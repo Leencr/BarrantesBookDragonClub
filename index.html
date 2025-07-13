@@ -40,28 +40,24 @@
     .house-hu { background: linear-gradient(#ecb939, #b18b00); }
 
     .star-rating {
-  font-size: 2rem;
-  letter-spacing: 0.2rem;
-  margin-top: 0.5rem;
-}
-
-.star {
-  color: #FFD700; /* dorado */
-  text-shadow: 0 0 5px #fff2ac;
-}
-
-.star.empty {
-  color: #555;
-  text-shadow: none;
-}
-    .star-rating .star {
-  animation: shine 2s ease-in-out infinite alternate;
-}
-
-@keyframes shine {
-  0% { text-shadow: 0 0 5px #fff2ac; }
-  100% { text-shadow: 0 0 15px #ffe066; }
-}
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+      margin-top: 0.5rem;
+    }
+    .star {
+      color: #FFD700;
+      text-shadow: 0 0 5px #fff2ac;
+      animation: shine 2s ease-in-out infinite alternate;
+    }
+    .star.empty {
+      color: #555;
+      text-shadow: none;
+      animation: none;
+    }
+    @keyframes shine {
+      0% { text-shadow: 0 0 5px #fff2ac; }
+      100% { text-shadow: 0 0 15px #ffe066; }
+    }
   </style>
 </head>
 <body class="min-h-screen p-6">
@@ -110,6 +106,13 @@
       "Con ganas de más", "Personajes", "Trama", "Ambientación", "Desarrollo", "Final"
     ];
 
+    const escudos = {
+      gy: "https://i.ibb.co/BSYnTX6/Escudo-cute-Gryffindor.jpg",
+      sl: "https://i.ibb.co/Q7bhsk1M/Escudo-cute-Slytherin.jpg",
+      ra: "https://i.ibb.co/MDKqR6Vn/Escudo-cute-Ravenclaw.jpg",
+      hu: "https://i.ibb.co/7Jk3PNSB/Escudo-cute-Hufflepuff.jpg"
+    };
+
     const contenedor = document.querySelector(".grid");
     const template = document.getElementById("criteria-template");
 
@@ -119,34 +122,35 @@
       contenedor.appendChild(clone);
     });
 
-function generarEstrellas(calificacion) {
-  let estrellasHTML = '';
-  const totalEstrellas = 5;
-  let restante = parseFloat(calificacion);
+    function generarEstrellas(calificacion) {
+      let estrellasHTML = '';
+      const totalEstrellas = 5;
+      let restante = parseFloat(calificacion);
 
-  for (let i = 0; i < totalEstrellas; i++) {
-    if (restante >= 1) {
-      estrellasHTML += '<span class="star">★</span>';
-      restante -= 1;
-    } else if (restante >= 0.5) {
-      estrellasHTML += '<span class="star">☆</span>'; // media estrella visual
-      restante -= 0.5;
-    } else if (restante >= 0.25) {
-      estrellasHTML += '<span class="star">✶</span>'; // cuarto estrella decorativa
-      restante -= 0.25;
-    } else {
-      estrellasHTML += '<span class="star empty">★</span>'; // estrella vacía
+      for (let i = 0; i < totalEstrellas; i++) {
+        if (restante >= 1) {
+          estrellasHTML += '<span class="star">★</span>';
+          restante -= 1;
+        } else if (restante >= 0.5) {
+          estrellasHTML += '<span class="star">☆</span>'; // media
+          restante -= 0.5;
+        } else if (restante >= 0.25) {
+          estrellasHTML += '<span class="star">✶</span>'; // cuarto
+          restante -= 0.25;
+        } else {
+          estrellasHTML += '<span class="star empty">★</span>';
+        }
+      }
+
+      return `<div class="star-rating">${estrellasHTML}</div>`;
     }
-  }
-
-  return `<div class="star-rating">${estrellasHTML}</div>`;
-}
 
     function calcularCalificacion() {
       const opciones = document.querySelectorAll(".criterio");
       let total = 0;
       opciones.forEach(op => total += parseFloat(op.value));
       const calificacion = (total / criterios.length).toFixed(2);
+
       let color = "text-red-500";
       if (calificacion >= 4) color = "text-green-400";
       else if (calificacion >= 3) color = "text-yellow-300";
@@ -165,12 +169,9 @@ function generarEstrellas(calificacion) {
         ra: "🦅 Sabiduría y curiosidad, propio de un Ravenclaw lector.",
         hu: "🦡 Lealtad y esfuerzo, cual buen lector de Hufflepuff."
       };
-      const escudos = {
-        gy: "https://i.ibb.co/BSYnTX6/Escudo-cute-Gryffindor.jpg",
-        sl: "https://i.ibb.co/Q7bhsk1M/Escudo-cute-Slytherin.jpg",
-        ra: "https://i.ibb.co/MDKqR6Vn/Escudo-cute-Ravenclaw.jpg",
-        hu: "https://i.ibb.co/7Jk3PNSB/Escudo-cute-Hufflepuff.jpg"
-};
+
+      const estrellas = generarEstrellas(calificacion);
+
       const mensajeCasa = casa ? `
         <div class='flex items-center justify-center gap-3 mt-4'>
           <img src='${escudos[casa]}' alt='Escudo ${casa}' class='w-12 h-12 object-contain' />
@@ -178,18 +179,17 @@ function generarEstrellas(calificacion) {
         </div>
       ` : "";
 
-      const estrellas = generarEstrellas(calificacion);
-
-          resultado.innerHTML = `
-             ✨ <span class="${color}">${libro}</span> tiene una calificación mágica de <span class="${color}">${calificacion} / 5</span>
-          ${estrellas}
-          ${mensajeCasa}
-`;
-
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `
+        ✨ <span class="${color}">${libro}</span> tiene una calificación mágica de <span class="${color}">${calificacion} / 5</span>
+        ${estrellas}
+        ${mensajeCasa}
+      `;
+    }
 
     function refrescar() {
       document.getElementById("bookName").value = "";
-      document.querySelectorAll(".criterio").forEach(op => op.value = "1");
+      document.querySelectorAll(".criterio").forEach(op => op.value = "0.5");
       document.getElementById("hogwartsHouse").value = "";
       document.getElementById("resultado").textContent = "";
       document.body.className = "min-h-screen p-6";
