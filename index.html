@@ -38,19 +38,6 @@
     .house-sl { background: linear-gradient(#1a472a, #0a2e1a); }
     .house-ra { background: linear-gradient(#0e1a40, #1b2c65); }
     .house-hu { background: linear-gradient(#ecb939, #b18b00); }
-    .wand {
-      width: 60px;
-      height: auto;
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: floatWand 3s ease-in-out infinite;
-    }
-    @keyframes floatWand {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
-    }
   </style>
 </head>
 <body class="min-h-screen p-6">
@@ -146,7 +133,6 @@
 
       const resultado = document.getElementById("resultado");
       resultado.innerHTML = `
-        <img src="https://media.tenor.com/Wzdy7_59ZYoAAAAj/magic-wand.gif" alt="Varita mágica" class="wand" />
         ✨ <span class="${color}">${libro}</span> tiene una calificación mágica de <span class="${color}">${calificacion} / 5</span> ✨
         ${mensajeCasa}
       `;
