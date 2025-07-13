@@ -32,10 +32,10 @@
     }
     @keyframes sparkle {
       0% {background-position: 0 0;}
-      100% {background-position: 1000px 1000px;}
+         100% {background-position: 1000px 1000px;}
     }
     .house-gy { background: linear-gradient(#7f0909, #4b0101); }
-    .house-sl { background: linear-gradient(#1a472a, #0a2e1a); }
+    .house-sl { backgckground: linear-gradient(#1a472a, #0a2e1a); }
     .house-ra { background: linear-gradient(#0e1a40, #1b2c65); }
     .house-hu { background: linear-gradient(#ecb939, #b18b00); }
 
@@ -79,15 +79,15 @@
       <button onclick="refrescar()" class="px-4 py-2 rounded bg-gray-500 hover:bg-gray-400 text-white font-bold">🔄 Refrescar</button>
     </div>
 
-    <div id="resultado" class="text-center mt-6 text-3xl font-bold relative"></div>
+    <div id="resultado" class="text-center mt-6 text-3xl font-bo-bold relative"></div>
   </div>
 
   <template id="criteria-template">
     <div>
       <label class="block mb-1 font-semibold"></label>
       <select class="w-full p-2 rounded text-black criterio">
-        <option value="1">Sí</option>
-        <option value="0.5">MoM</option>
+        <option value="0.5">Sí</option>
+        <option value="0.25">MoM</option>
         <option value="0">No</option>
       </select>
     </div>
@@ -101,9 +101,9 @@
 
     const escudos = {
       gy: "https://i.ibb.co/BSYnTX6/Escudo-cute-Gryffindor.jpg",
-      sl: "https://i.ibb.co/Q7bhsk1M/Escudo-cute-Slytherin.jpg",
-      ra: "https://i.ibb.co/MDKqR6Vn/Escudo-cute-Ravenclaw.jpg",
-      hu: "https://i.ibb.co/7Jk3PNSB/Escudo-cute-Hufflepuff.jpg"
+      sl: "https://i.ibb.co/Q7bhsk1/Escudo-cute-Slytherin.jpg",
+      ra: "https://i.ibb.co/MDKqR6V/Escudo-cute-Ravenclaw.jpg",
+      hu: "https://i.ibb.co/7Jk3PNS/Escudo-cute-Hufflepuff.jpg"
     };
 
     const contenedor = document.querySelector(".grid");
@@ -160,7 +160,7 @@
       const opciones = document.querySelectorAll(".criterio");
       let total = 0;
       opciones.forEach(op => total += parseFloat(op.value));
-      const calificacion = (total / criterios.length).toFixed(2);
+      const calificacion = total.toFixed(2);
 
       let color = "text-red-500";
       if (calificacion >= 4) color = "text-green-400";
@@ -200,7 +200,7 @@
 
     function refrescar() {
       document.getElementById("bookName").value = "";
-      document.querySelectorAll(".criterio").forEach(op => op.value = "1");
+      document.querySelectorAll(".criterio").forEach(op => op.value = "0.5");
       document.getElementById("hogwartsHouse").value = "";
       document.getElementById("resultado").textContent = "";
       document.body.className = "min-h-screen p-6";
