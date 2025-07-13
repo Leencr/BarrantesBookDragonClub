@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Dragon Club</title>
+  <title>Barrantes Book Dragon Club</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
   <style>
@@ -32,10 +32,10 @@
     }
     @keyframes sparkle {
       0% {background-position: 0 0;}
-         100% {background-position: 1000px 1000px;}
+      100% {background-position: 1000px 1000px;}
     }
     .house-gy { background: linear-gradient(#7f0909, #4b0101); }
-    .house-sl { backgckground: linear-gradient(#1a472a, #0a2e1a); }
+    .house-sl { background: linear-gradient(#1a472a, #0a2e1a); }
     .house-ra { background: linear-gradient(#0e1a40, #1b2c65); }
     .house-hu { background: linear-gradient(#ecb939, #b18b00); }
 
@@ -58,7 +58,7 @@
   <div class="stars"></div>
 
   <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/20">
-    <h1 class="text-4xl font-bold text-center text-yellow-300 mb-4">Book Dragon Club 🐉📚</h1>
+    <h1 class="text-4xl font-bold text-center text-yellow-300 mb-4">Barrantes Book Dragon Club 🐉📚</h1>
 
     <label class="block mb-2 text-lg">📖 Nombre del libro:</label>
     <input type="text" id="bookName" class="w-full p-2 rounded text-black mb-4" placeholder="Ej. Elantris" />
@@ -79,7 +79,7 @@
       <button onclick="refrescar()" class="px-4 py-2 rounded bg-gray-500 hover:bg-gray-400 text-white font-bold">🔄 Refrescar</button>
     </div>
 
-    <div id="resultado" class="text-center mt-6 text-3xl font-bo-bold relative"></div>
+    <div id="resultado" class="text-center mt-6 text-3xl font-bold relative"></div>
   </div>
 
   <template id="criteria-template">
@@ -92,6 +92,16 @@
       </select>
     </div>
   </template>
+
+  <!-- Firma -->
+  <div class="text-center mt-8">
+    <div class="text-sm text-white/70 hover:text-white transition-colors duration-300">
+      ✨ Creado con magia por ECB 📚
+    </div>
+    <div class="text-xs text-white/50 mt-1">
+      © 2025 Barrantes Book Dragon Club
+    </div>
+  </div>
 
   <script>
     const criterios = [
