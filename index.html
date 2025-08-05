@@ -51,6 +51,25 @@
     .star:hover {
       transform: scale(1.2);
     }
+
+    /* Botón volver */
+    .button-back {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+      z-index: 50;
+    }
+    .button-back:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
   </style>
 </head>
 <body class="min-h-screen p-6">
@@ -102,6 +121,9 @@
       © 2025 Book Dragon Club
     </div>
   </div>
+
+  <!-- Botón de volver -->
+  <a href="https://leencr.github.io/" class="button-back">⬅️ Volver a la página de inicio</a>
 
   <script>
     const criterios = [
